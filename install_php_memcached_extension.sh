@@ -6,9 +6,10 @@ DIR_NAME=memcached-2.2.0
 PHP_DIR=/usr/local/php
 MEMCACHED_DIR=/usr/local/libmemcached-1.0.18
 
-if [ grep extension=\"memcached.so\"  $PHP_DIR/etc/php.ini ];then
-	echo "memcached extension has been installed!"
-	exit
+if grep "extension=\"memcached.so\""  $PHP_DIR/etc/php.ini
+then
+        echo "memcached extension has been installed!"
+        exit
 fi
 cd $SRC_PATH
 if [ !-f $FILE_NAME];then
