@@ -15,7 +15,8 @@ cd $SRC_PATH
 if [ !-f $FILE_NAME];then
 	wget http://pecl.php.net/get/$FILE_NAME
 fi
-if [!-d $DIR_NAME];then
+if [ !-d $DIR_NAME ]
+then
 	tar -zxvf $FILE_NAME
 fi
 cd $DIR_NAME
