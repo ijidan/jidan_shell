@@ -1,10 +1,10 @@
 #/bin/bash
 
-SRC_PATH=/usr/local/src
-FILE_NAME=memcached-2.2.0.tgz
-DIR_NAME=memcached-2.2.0
-PHP_DIR=/usr/local/php
-MEMCACHED_DIR=/usr/local/libmemcached-1.0.18
+readonly SRC_PATH=/usr/local/src
+readonly FILE_NAME=memcached-2.2.0.tgz
+readonly DIR_NAME=memcached-2.2.0
+readonly PHP_DIR=/usr/local/php
+readonly MEMCACHED_DIR=/usr/local/libmemcached-1.0.18
 
 if grep "extension=\"memcached.so\""  $PHP_DIR/etc/php.ini
 then
