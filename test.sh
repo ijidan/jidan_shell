@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo select your fav language:\\n
+select var  in "php" "js" "java" "python"
+do
+	break
+done
 
-file_type=`file $1`
-echo $file_type
+echo "your fav lang is ${var}"
