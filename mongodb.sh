@@ -1,5 +1,8 @@
 #/bin/bash
 
+source ./common.sh
+
+
 
 function install(){
 
@@ -32,7 +35,7 @@ function start(){
 	mongo_ps=pgrep $MONGO |wc -l
 
 
-	if $mongod_ps > 0`
+	if $mongod_ps > 0
 	then
         	echo "mongod is running "
 	else

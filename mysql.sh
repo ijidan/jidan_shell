@@ -1,8 +1,6 @@
 #!/bin/bash
 
-PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:~/sbin:~/bin
-export PATH
-
+source ./common.sh
 
 case $1 in 
 	"install")

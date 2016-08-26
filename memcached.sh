@@ -1,10 +1,25 @@
 #!/bin/bash
 
+source ./common.sh
+
+case $1 in 
+	"install")
+		install ;;
+	"uninstall")
+		install ;;
+	"start")
+		start ;;
+	"stop")
+		stop ;;
 
 function install(){
 
-	local readonly SRC_PATH=/usr/src
-	local readonly LOCAL_PATH=/usr/local
+	is_installed=`isProgramInstalled memcached`
+	if [ ${is_installed}==0 ]
+	then
+		echo "memcached has been installed"
+		exit 1 
+
 	local readonly FILE_PATH=memcached-1.4.31
 	local readonly FILE_NAME=${FILE_DIR}.tar.gz
 
@@ -20,10 +35,14 @@ function install(){
 }
 
 function start(){
-	/usr/local/memcached-1.2.0/bin/memcached -d -m 128 -l 127.0.0.1 -p 11211 -u root
+	/usr/local/memcached-1.2.0/bin/memcached -d -m 128 -l 127.0.0.1 -p 11211 -u rooti
+	if [ $1==0 ]
+	then 
+		echo "memcached started"
+	else
+		echo "memcached start failed"
 }
-
-
-
+function stop(){
+}
 function uninstall(){
 }
