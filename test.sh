@@ -1,9 +1,10 @@
 #!/bin/bash
 
+info()  
+{  
+   cat jlb.sh
+}  
 
-which ssdb
-echo $?
-
-which nginx
-
-echo $?
+res=`info`
+echo "state: "$?
+echo "res: "${res}

@@ -7,23 +7,34 @@ LOCAL_PATH=/usr/local
 SRC_PATH=${LOCAL_PATH}/src
 
 function isProgramInstalled(){
-	which $1
-	return $?
+	_installed=`command -v $1 >/dev/null 2>&1`
+	if [[ ${_installed} == ""  ]]
+	then
+		return 0
+	else
+		return 1
+	fi
 }
 
 function isProgramRunning(){
 	 _ps=`pgrep $MONGOD_CMD |wc -l`
 	 if [ ${_ps} -eq 0 ]
 	 then 
-		return true
+		return 1
 	 else
-		return false
+		return 0
 	 fi 
 }
 
-$running=`isProgramRunning nginx`
+#isProgramInstalled vim
+#echo $?
+#is_installed=`isProgramInstalled vim`
 
-echo $running
+#echo ${is_installed}
+
+#running=`isProgramRunning nginx`
+
+#echo $running
 
 
 #$nginx_installed= `isProgramInstalled nginx`
