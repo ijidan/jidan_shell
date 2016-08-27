@@ -30,19 +30,21 @@ function _install(){
 		tar -zxvf $FILE_NAME -C $LOCAL_DIR
 	fi
 
-	ln -sf ${LOCAL_DIR}/bin/mongod		./mongod
-	ln -sf ${LOCAL_DIR}/bin/mongo		./mongo
-	ln -sf ${LOCAL_DIR}/bin/bsondump	./bsondump
-	ln -sf ${LOCAL_DIR}/bin/mongodump	./mongodump
-	ln -sf ${LOCAL_DIR}/bin/mongoexport	./mongoexport
-	ln -sf ${LOCAL_DIR}/bin/mongofiles	./mongofiles
-	ln -sf ${LOCAL_DIR}/bin/mongoimport	./mongoimport
-	ln -sf ${LOCAL_DIR}/bin/mongooplog	./mongooplog
-	ln -sf ${LOCAL_DIR}/bin/mongoperf	./mongoperf
-	ln -sf ${LOCAL_DIR}/bin/mongorestore	./mongorestore
-	ln -sf ${LOCAL_DIR}/bin/mongos		./mongos
-	ln -sf ${LOCAL_DIR}/bin/mongostat	./mongostat
-	ln -sf ${LOCAL_DIR}/bin/mongotop	./mongotop
+	mkdir -r /data/db
+	mkdir -r /data/mongo_log
+	ln -sf ${LOCAL_DIR}/bin/mongod		${LOCAL_BIN_DIR}/mongod
+	ln -sf ${LOCAL_DIR}/bin/mongo		${LOCAL_BIN_DIR}/mongo
+	ln -sf ${LOCAL_DIR}/bin/bsondump	${LOCAL_BIN_DIR}/bsondump
+	ln -sf ${LOCAL_DIR}/bin/mongodump	${LOCAL_BIN_DIR}/mongodump
+	ln -sf ${LOCAL_DIR}/bin/mongoexport	${LOCAL_BIN_DIR}/mongoexport
+	ln -sf ${LOCAL_DIR}/bin/mongofiles	${LOCAL_BIN_DIR}/mongofiles
+	ln -sf ${LOCAL_DIR}/bin/mongoimport	${LOCAL_BIN_DIR}/mongoimport
+	ln -sf ${LOCAL_DIR}/bin/mongooplog	${LOCAL_BIN_DIR}/mongooplog
+	ln -sf ${LOCAL_DIR}/bin/mongoperf	${LOCAL_BIN_DIR}/mongoperf
+	ln -sf ${LOCAL_DIR}/bin/mongorestore	${LOCAL_BIN_DIR}/mongorestore
+	ln -sf ${LOCAL_DIR}/bin/mongos		${LOCAL_BIN_DIR}/mongos
+	ln -sf ${LOCAL_DIR}/bin/mongostat	${LOCAL_BIN_DIR}/mongostat
+	ln -sf ${LOCAL_DIR}/bin/mongotop	${LOCAL_BIN_DIR}/mongotop
 }
 function _uninstall(){
   echo "_uninstall"
@@ -63,15 +65,15 @@ function _start(){
         	echo "mongod is running "
 		exit 1 
 	else
-        	`${MONGOD_CMD}`
+        	${MONGOD_CMD} --journal --fork  --logpath=/data/mongo_log --storageEngine=mmapv1
 	fi
 
-	if [ "${mongo_ps}" -get "0" ]
+	if [ "${mongo_ps}" -gt "0" ]
 	then
         	echo "mongo is running"
 		exit 1
 	else 
-        	`${MONGO_CMD}`
+        	${MONGO_CMD}
 
 	fi
 }

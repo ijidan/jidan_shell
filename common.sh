@@ -5,6 +5,7 @@ export PATH
 
 readonly LOCAL_DIR=/usr/local
 readonly SRC_DIR=${LOCAL_DIR}/src
+readonly LOCAL_BIN_DIR=${LOCAL_DIR}/bin
 
 function isProgramInstalled(){
 	_installed=`command -v $1 >/dev/null 2>&1`
