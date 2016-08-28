@@ -28,7 +28,7 @@ function isProgramRunning(){
 }
 
 function is64Bit(){
-	`uname -a | grep "x86_64" `
+	uname -a | grep "x86_64" 
 	if [[ "$?" -eq "0" ]]
 	then
 		return 1
@@ -36,7 +36,15 @@ function is64Bit(){
 		return 0
 	fi
 }
-
-is64Bit
-
-echo $?
+function makeDir(){
+	if [ ! -d $1 ]
+	then
+		mkdir -r $1
+	fi
+}
+function makeFile(){
+	if [ ! -f $1 ]
+	then
+		touch $1
+	fi
+}

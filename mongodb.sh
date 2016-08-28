@@ -6,10 +6,10 @@ is64Bit
 if [[ "$?" -eq "1"  ]]
 then
 	readonly DIR_NAME=mongodb-linux-x86_64-rhel62-3.2.9
-	readonly FILE_NAME=mongodb-linux-x86_64-rhel62-3.2.9.tgz
+	readonly FILE_NAME=${DIR_NAME}.tgz
 else
 	readonly DIR_NAME=mongodb-linux-i686-3.2.9
-	readonly FILE_NAME=mongodb-linux-i686-3.2.9.tgz
+	readonly FILE_NAME=${DIR_NAME}.tgz
 fi
 function _install(){
 	isProgramInstalled mongod
@@ -29,9 +29,9 @@ function _install(){
 	then
 		tar -zxvf $FILE_NAME -C $LOCAL_DIR
 	fi
-
-	mkdir -r /data/db
-	mkdir -r /data/mongo_log
+	makeDir /data/db
+	makeDir /data/mongo_log
+	
 	ln -sf ${LOCAL_DIR}/bin/mongod		${LOCAL_BIN_DIR}/mongod
 	ln -sf ${LOCAL_DIR}/bin/mongo		${LOCAL_BIN_DIR}/mongo
 	ln -sf ${LOCAL_DIR}/bin/bsondump	${LOCAL_BIN_DIR}/bsondump
@@ -53,12 +53,11 @@ function _uninstall(){
 function _start(){
 	
 	local readonly MONGO_DIR=$LOCAL_DIR/$DIR_NAME
-	local readonly  MONGOD_CMD=$MONGO_DIR/bin/mongod
+	local readonly MONGOD_CMD=$MONGO_DIR/bin/mongod
 	local readonly MONGO_CMD=$MONGO_DIR/bin/mongo
 
-	mongod_ps=`pgrep $MONGOD_CMD |wc -l`
-	mongo_ps=`pgrep $MONGO |wc -l`
-
+	mongod_ps=`pgrep  mongod  |wc -l`
+	mongo_ps=`pgrep  mongo  |wc -l`
 
 	if [[ "${mongod_ps}" -gt "0" ]]
 	then
@@ -68,14 +67,14 @@ function _start(){
         	${MONGOD_CMD} --journal --fork  --logpath=/data/mongo_log --storageEngine=mmapv1
 	fi
 
-	if [ "${mongo_ps}" -gt "0" ]
-	then
-        	echo "mongo is running"
-		exit 1
-	else 
-        	${MONGO_CMD}
+	#if [ "${mongo_ps}" -gt "0" ]
+	#then
+        #	echo "mongo is running"
+	#	exit 1
+	#else 
+        #	${MONGO_CMD}
 
-	fi
+	#fi
 }
 
 function _stop(){
