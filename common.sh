@@ -18,6 +18,9 @@ readonly IMAGE_MAGICK_VERSION=""
 readonly OPCACHE_VERSION=""
 readonly REDIS_VERSION=""
 readonly XCACHE_VERSION=""
+readonly SVN_VERSION="subversion-1.9.4"
+
+
 
 function isProgramInstalled(){
 	_installed=`command -v $1 >/dev/null 2>&1`
@@ -60,3 +63,21 @@ function makeFile(){
 		touch $1
 	fi
 }
+function checkExistAndDel(){
+	[ -f "$1" ] && rm "$1"
+	[ -d "$1" ] && rm -rf "$1"
+}
+function echoTip(){
+	echo -e "\033[1;33m +++++++++++++++   $1  +++++++++++++++ \033[0m"
+}
+
+
+
+
+
+
+
+
+
+
+
