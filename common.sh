@@ -7,6 +7,18 @@ readonly LOCAL_DIR=/usr/local
 readonly SRC_DIR=${LOCAL_DIR}/src
 readonly LOCAL_BIN_DIR=${LOCAL_DIR}/bin
 
+
+readonly NGINX_VERSION=""
+readonly PHP_VERSION=""
+readonly MYSQL_VERSION=""
+readonly MEMCACHED_VERSION=""
+readonly MEMCACHE_VERSION=""
+readonly EACCELERATOR_VERSION=""
+readonly IMAGE_MAGICK_VERSION=""
+readonly OPCACHE_VERSION=""
+readonly REDIS_VERSION=""
+readonly XCACHE_VERSION=""
+
 function isProgramInstalled(){
 	_installed=`command -v $1 >/dev/null 2>&1`
 	if [[ ${_installed} == ""  ]]

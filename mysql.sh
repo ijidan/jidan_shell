@@ -30,4 +30,6 @@ case $1 in
 	;;
 esac
 
+function install(){
 
+}
