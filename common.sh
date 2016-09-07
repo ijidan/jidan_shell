@@ -19,7 +19,7 @@ readonly OPCACHE_VERSION=""
 readonly REDIS_VERSION=""
 readonly XCACHE_VERSION=""
 readonly SVN_VERSION="subversion-1.9.4"
-
+readonly GEARMAN_VERSION="gearmand-1.1.12"
 
 
 function isProgramInstalled(){
@@ -63,12 +63,22 @@ function makeFile(){
 		touch $1
 	fi
 }
-function checkExistAndDel(){
-	[ -f "$1" ] && rm "$1"
-	[ -d "$1" ] && rm -rf "$1"
-}
+
 function echoTip(){
-	echo -e "\033[1;33m +++++++++++++++   $1  +++++++++++++++ \033[0m"
+        echo -e "\033[1;33m +++++++++++++++   $1  +++++++++++++++ \033[0m"
+}
+
+function checkExistAndDel(){
+	if [ -f "$1" ]
+	then
+		echoTip "deleting file $1"
+		rm "$1"
+	fi
+	if [ -d "$1" ]
+	then
+		echoTip "deleting dir $1"
+		rm -rf "$1"
+	fi
 }
 
 
