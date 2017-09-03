@@ -11,7 +11,7 @@ case $1 in
 		start ;;
 	"stop")
 		stop ;;
-
+esac
 function install(){
 
 	is_installed=`isProgramInstalled memcached`

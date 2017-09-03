@@ -29,8 +29,8 @@ function _install(){
 	then
 		tar -zxvf $FILE_NAME -C $LOCAL_DIR
 	fi
-	makeDir /data/db
-	makeDir /data/mongo_log
+	#makeDir -r /data/db
+	#makeDir -r/data/mongo_log
 	
 	ln -sf ${LOCAL_DIR}/bin/mongod		${LOCAL_BIN_DIR}/mongod
 	ln -sf ${LOCAL_DIR}/bin/mongo		${LOCAL_BIN_DIR}/mongo
